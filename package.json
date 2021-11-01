@@ -1,0 +1,24 @@
+{
+  "name": "stackexchange-miner",
+  "version": "1.0.0",
+  "description": "StackExchanges we plan to present results for:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utkarshg99/StackExchange-Miner.git"
+  },
+  "author": "Utkarsh Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/utkarshg99/StackExchange-Miner/issues"
+  },
+  "homepage": "https://github.com/utkarshg99/StackExchange-Miner#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1"
+  }
+}
