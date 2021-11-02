@@ -20,6 +20,9 @@
     "axios": "^0.24.0",
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.1",
-    "pretty": "^2.0.0"
+    "node-7z": "^3.0.0",
+    "nodejs-file-downloader": "^4.7.4",
+    "pretty": "^2.0.0",
+    "xmlhttprequest": "^1.8.0"
   }
 }
