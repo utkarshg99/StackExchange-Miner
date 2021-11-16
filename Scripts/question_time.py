@@ -1,0 +1,36 @@
+import json, sys, time
+from datetime import datetime
+import matplotlib.pyplot as plt
+# import numpy as np
+
+DATA_DIRECTORY = "../Data/Extracted"
+RES_DIR = "../Results"
+fpath = f"{DATA_DIRECTORY}/{sys.argv[1]}/Posts.json"
+
+with open(fpath, "r", encoding="utf8") as datajs:
+    data_arr = json.load(datajs)["data"]
+
+BUCKETS = {str(i): {
+    "n_posts": 0, 
+    "t_viewcounts": 0,
+    "t_answers": 0,
+    "t_comments": 0,
+    "t_favs": 0
+    } for i in range(0, 24)}
+
+for post in data_arr:
+    tme = datetime.strptime(post["CreationDate"][:-4], "%Y-%m-%dT%H:%M:%S")
+    BUCKETS[str(tme.hour)]["n_posts"] += 1
+    BUCKETS[str(tme.hour)]["t_viewcounts"] += int(post.get("ViewCount", 0))
+    BUCKETS[str(tme.hour)]["t_answers"] += int(post.get("AnswerCount", 0))
+    BUCKETS[str(tme.hour)]["t_comments"] += int(post.get("CommentCount", 0))
+    BUCKETS[str(tme.hour)]["t_favs"] += int(post.get("FavouriteCount", 0))
+
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+hours = [i for i in BUCKETS]
+posts = [BUCKETS[i]["n_posts"] for i in BUCKETS]
+ax.barh(hours, posts)
+plt.savefig(f"{RES_DIR}/question-time.png")
+plt.show()
+plt.clf()
