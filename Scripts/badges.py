@@ -1,66 +1,4 @@
-import json
-from os import link, path, mkdir
-from tqdm import tqdm
-from shutil import rmtree
-from plot_utils import *
-import matplotlib.pyplot as plt
-
-DATA_DIR = "Data/Extracted/"
-RESULTS_DIR = "Results/"
-
-DATA = {
-    "Badges": [],
-    "Comments": [],
-    "PostHistory": [],
-    "PostLinks": [],
-    "Posts": [],
-    "Tags": [],
-    "Users": [],
-    "Votes": [],
-}
-
-
-def load_data(stack_name):
-    print("Loading data...")
-    json_dir = DATA_DIR + str(stack_name)
-
-    for file in tqdm(DATA):
-        filepath = json_dir + "/" + file + ".json"
-        if path.isfile(filepath):
-            with open(filepath, "r") as f:
-                dump = json.load(f)
-                # print(len(dump["data"]))
-                DATA[file] = dump["data"]
-
-
-"""
-More results:
-Link creation chronology
-"""
-
-
-def run_postlinks(resdir):
-    print("PostLinks Data Analysis")
-
-    postlinks = DATA["PostLinks"]
-    if not postlinks:
-        print("Data not available")
-        return
-
-    link_graph = {}
-
-    for entry in postlinks:
-        if int(entry["PostId"]) not in link_graph:
-            link_graph[int(entry["PostId"])] = {"related": [], "duplicate": []}
-        if entry["LinkTypeId"] == "1":
-            link_graph[int(entry["PostId"])]["related"].append(
-                {"id": int(entry["RelatedPostId"]), "date": entry["CreationDate"]}
-            )
-        else:
-            link_graph[int(entry["PostId"])]["duplicate"].append(
-                {"id": int(entry["RelatedPostId"]), "date": entry["CreationDate"]}
-            )
-
+from utils import *
 
 """
 More results:
@@ -69,9 +7,9 @@ Badge award chronology
 """
 
 
-def run_badges(resdir):
+def run_badges(stack_name, resdir):
     print("Badge Data Analysis")
-    badges = DATA["Badges"]
+    badges = load_file(stack_name, "Badges.json")
 
     resdir = resdir + "/Badges"
     if not path.exists(resdir):
@@ -157,16 +95,3 @@ def run_badges(resdir):
     plot_bar_dict(dict(list(sorted(bronze_badges.items(), key=lambda x: x[1], reverse=True))[:10])).savefig(
         resdir + "/bronze_stats.png"
     )
-
-
-def run(stack_name):
-    load_data(stack_name)
-    resultdir = RESULTS_DIR + stack_name
-    if path.exists(resultdir):
-        rmtree(resultdir)
-    mkdir(resultdir)
-    run_badges(resultdir)
-
-
-if __name__ == "__main__":
-    run("history.stackexchange.com")
