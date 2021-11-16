@@ -1,7 +1,7 @@
-const https = require("https");
 const fs = require("fs");
 const cheerio = require("cheerio");
 const axios = require("axios");
+const convert = require('xml-js');
 const Seven = require("node-7z");
 const Downloader = require('nodejs-file-downloader');
 
@@ -136,7 +136,31 @@ async function getData() {
     let urls = ["chinese.stackexchange.com.7z", "emacs.stackexchange.com.7z", "history.stackexchange.com.7z"]; // The stackexchange sub-domains to download data from
     let fnames = await downloadFile(urls);
     await unzipFiles(fnames); // unzip the downloaded tars
+    return urls;
 }
 
-// findData();
-getData();
+async function convertJSON(dwd_dat){
+    let rawdata, folder, res_json, res;
+    for(let i=0; i<dwd_dat.length; i++){
+        folder = FILE_EXTRACT_PATH+dwd_dat[i].substring(0, dwd_dat[i].length-3);
+        for(let j=0; j<FILES.length; j++){
+            rawdata = fs.readFileSync(folder+"/"+FILES[j]);
+            res_json = JSON.parse(convert.xml2json(rawdata, {compact: true}));
+            delete res_json["_declaration"];
+            res = { "data": [] };
+            for(let i=0; i<res_json[Object.keys(res_json)[0]]["row"].length; i++){
+                res["data"].push(Object.assign({}, res_json[Object.keys(res_json)[0]]["row"][i]["_attributes"]));
+            }
+            fs.writeFileSync(folder+"/"+FILES[j].substring(0, FILES[j].length-3)+"json", JSON.stringify(res, null, "\t"));
+        }
+    }
+}
+
+async function main() {
+    // await findData();
+    let dwd_dat = await getData();
+    // let dwd_dat = ["chinese.stackexchange.com.7z", "emacs.stackexchange.com.7z", "history.stackexchange.com.7z"]; // The stackexchange sub-domains to download data from
+    await convertJSON(dwd_dat);
+}
+
+main();
