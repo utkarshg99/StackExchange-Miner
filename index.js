@@ -158,8 +158,8 @@ async function convertJSON(dwd_dat){
 
 async function main() {
     // await findData();
-    let dwd_dat = await getData();
-    // let dwd_dat = ["chinese.stackexchange.com.7z", "emacs.stackexchange.com.7z", "history.stackexchange.com.7z"]; // The stackexchange sub-domains to download data from
+    // let dwd_dat = await getData();
+    let dwd_dat = ["chinese.stackexchange.com.7z", "emacs.stackexchange.com.7z", "history.stackexchange.com.7z"]; // The stackexchange sub-domains to download data from
     await convertJSON(dwd_dat);
 }
 
