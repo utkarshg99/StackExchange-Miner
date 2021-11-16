@@ -1,11 +1,12 @@
 import json, sys, time
 from datetime import datetime
 import matplotlib.pyplot as plt
-# import numpy as np
+from pathlib import Path
 
 DATA_DIRECTORY = "../Data/Extracted"
-RES_DIR = "../Results"
+RES_DIR = f"../Results/{sys.argv[1]}"
 fpath = f"{DATA_DIRECTORY}/{sys.argv[1]}/Posts.json"
+Path(RES_DIR).mkdir(parents=True, exist_ok=True)
 
 with open(fpath, "r", encoding="utf8") as datajs:
     data_arr = json.load(datajs)["data"]
@@ -26,11 +27,11 @@ for post in data_arr:
     BUCKETS[str(tme.hour)]["t_comments"] += int(post.get("CommentCount", 0))
     BUCKETS[str(tme.hour)]["t_favs"] += int(post.get("FavouriteCount", 0))
 
-fig = plt.figure()
-ax = fig.add_axes([0,0,1,1])
+fig = plt.figure(figsize=(12,6))
 hours = [i for i in BUCKETS]
 posts = [BUCKETS[i]["n_posts"] for i in BUCKETS]
-ax.barh(hours, posts)
+plt.barh(hours, posts)
+plt.tight_layout(pad=0)
 plt.savefig(f"{RES_DIR}/question-time.png")
 plt.show()
 plt.clf()
