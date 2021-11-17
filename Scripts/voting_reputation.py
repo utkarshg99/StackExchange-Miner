@@ -30,7 +30,7 @@ for i in range(N_BUCKETS):
         rep_buck = REPBCKT.get(str(j), {"up": 0, "dw": 0})
         BUCKETS[str(i)]["upv"] += rep_buck["up"]
         BUCKETS[str(i)]["dwv"] += rep_buck["dw"]
-        BUCKETS[str(i)]["upr"] = BUCKETS[str(i)]["upv"]*100/(BUCKETS[str(i)]["upv"] + BUCKETS[str(i)]["dwv"]) if BUCKETS[str(i)]["upv"] + BUCKETS[str(i)]["dwv"] != 0 else 0
+        BUCKETS[str(i)]["upr"] = BUCKETS[str(i)]["upv"]*100/(BUCKETS[str(i)]["upv"] + BUCKETS[str(i)]["dwv"]) if (BUCKETS[str(i)]["upv"] + BUCKETS[str(i)]["dwv"]) != 0 else 0
 
 fig = plt.figure(figsize=(12,6))
 reps = [f"{BUCKETS[i]['dwlim']}-{BUCKETS[i]['uplim']}" for i in BUCKETS]
