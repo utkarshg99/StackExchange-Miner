@@ -49,7 +49,7 @@ def run_tags(stack_name, resdir):
         json.dump(results, f, indent="\t")
 
     with open(resdir + "/counts.csv", "w+") as f:
-        f.write("id, value\n")
+        f.write("id,value\n")
         for (k, v) in counts.items():
             f.write(",".join([str(k), str(v)]) + "\n")
 
