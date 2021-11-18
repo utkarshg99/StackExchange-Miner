@@ -5,6 +5,7 @@ from tags import run_tags
 from comments import run_comments
 from posts import run_posts
 from users import run_users
+from posthist import run_posthist
 from utils import *
 
 RESULTS_DIR = "../Results/"
@@ -20,8 +21,9 @@ def run(stack_name):
     # run_votes(stack_name, resultdir)
     # run_tags(stack_name, resultdir)
     # run_comments(stack_name, resultdir)
-    run_posts(stack_name, resultdir)
-    run_users(stack_name, resultdir)
+    # run_posts(stack_name, resultdir)
+    # run_users(stack_name, resultdir)
+    run_posthist(stack_name, resultdir)
 
 
 if __name__ == "__main__":
