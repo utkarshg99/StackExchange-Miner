@@ -27,10 +27,22 @@ for post in data_arr:
     BUCKETS[str(tme.hour)]["t_comments"] += int(post.get("CommentCount", 0))
     BUCKETS[str(tme.hour)]["t_favs"] += int(post.get("FavouriteCount", 0))
 
+to_dump = {
+    "buckets": BUCKETS
+}
+
+with open(f'{RES_DIR}/question_time.json', "w") as qtjs:
+    json.dump(to_dump, qtjs, indent="\t")
+
 fig = plt.figure(figsize=(12,6))
 hours = [i for i in BUCKETS]
 posts = [BUCKETS[i]["n_posts"] for i in BUCKETS]
-plt.barh(hours, posts)
+answers = [BUCKETS[i]["t_answers"] for i in BUCKETS]
+comments = [BUCKETS[i]["t_comments"] for i in BUCKETS]
+plt.barh(hours, comments, label="Number of Comments")
+plt.barh(hours, posts, label="Number of Posts")
+plt.barh(hours, answers, label="Number of Answers")
+plt.legend()
 plt.tight_layout(pad=0)
 plt.savefig(f"{RES_DIR}/question-time.png")
 plt.show()

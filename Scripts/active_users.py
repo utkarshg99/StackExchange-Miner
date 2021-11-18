@@ -55,6 +55,16 @@ while True:
     BUCKETS[i_]["t_act"] += BUCKETS[i_]["n_act"]
     i_ += 1
 
+to_dump = {
+    "all_dates": DATES_STR,
+    "c_dates": DATES_DAT_C,
+    "l_dates": DATES_DAT_L,
+    "buckets": BUCKETS
+}
+
+with open(f'{RES_DIR}/active_users.json', "w") as aujs:
+    json.dump(to_dump, aujs, indent="\t")
+
 fig = plt.figure(figsize=(12,6))
 buckets = [i for i in BUCKETS]
 # buckets = [f'{BUCKETS[i]["llim"]}to{BUCKETS[i]["llim"]}' for i in BUCKETS]
