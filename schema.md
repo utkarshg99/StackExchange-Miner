@@ -84,6 +84,7 @@
        - 3: Duplicate
    - **users**.xml
      - Id
+     - AccountId
      - Reputation
      - CreationDate
      - DisplayName
@@ -96,6 +97,7 @@
      - Views
      - UpVotes
      - DownVotes
+     - ProfileImageUrl
    - **votes**.xml
      - Id
      - PostId
@@ -113,6 +115,8 @@
         - `11`: Undeletion
         - `12`: Spam
         - `13`: InformModerator
+        - `15`: ModeratorReview
+        - `16`: ApproveEditSuggestion
      - CreationDate
      - UserId (only for VoteTypeId 5)
      - BountyAmount (only for VoteTypeId 9)

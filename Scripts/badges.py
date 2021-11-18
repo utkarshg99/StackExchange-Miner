@@ -4,6 +4,7 @@ from utils import *
 More results:
 Users with more number of badges
 Badge award chronology
+Bubble visualization
 """
 
 
@@ -12,8 +13,9 @@ def run_badges(stack_name, resdir):
     badges = load_file(stack_name, "Badges.json")
 
     resdir = resdir + "/Badges"
-    if not path.exists(resdir):
-        mkdir(resdir)
+    if path.exists(resdir):
+        rmtree(resdir)
+    mkdir(resdir)
 
     if not badges:
         print("Data not available")
