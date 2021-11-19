@@ -6,3 +6,5 @@ lxml
 wordcloud
 nltk
 sklearn
+pandas
+rpy2
