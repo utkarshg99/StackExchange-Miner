@@ -38,5 +38,4 @@ up_rate = [BUCKETS[i]["upr"] for i in BUCKETS]
 plt.bar(reps, up_rate)
 plt.tight_layout(pad=0)
 plt.savefig(f"{RES_DIR}/voting-reputation.png")
-plt.show()
 plt.clf()
