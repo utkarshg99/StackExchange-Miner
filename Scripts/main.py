@@ -7,6 +7,7 @@ from posts import run_posts
 from users import run_users
 from posthist import run_posthist
 from utils import *
+import sys
 
 RESULTS_DIR = "../Results/"
 
@@ -27,4 +28,4 @@ def run(stack_name):
 
 
 if __name__ == "__main__":
-    run("history.stackexchange.com")
+    run(sys.argv[1])

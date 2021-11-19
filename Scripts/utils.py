@@ -31,7 +31,7 @@ def load_file(stack, filename):
 
     filepath = json_dir + "/" + filename
     if path.isfile(filepath):
-        with open(filepath, "r") as f:
+        with open(filepath, "r", encoding="utf8") as f:
             dump = json.load(f)
             return dump["data"]
     else:

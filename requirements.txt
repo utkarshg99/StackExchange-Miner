@@ -1,3 +1,8 @@
-linkify_it
+linkify-it-py
 pyvis
 networkx
+beautifulsoup4
+lxml
+wordcloud
+nltk
+sklearn
