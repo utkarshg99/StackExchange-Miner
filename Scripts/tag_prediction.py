@@ -1,24 +1,6 @@
-# import json, sys
-# from datetime import datetime
-# import matplotlib.pyplot as plt
-# import pandas as pd
-# from nltk.corpus import stopwords
-# import re 
-# from nltk.tokenize import word_tokenize
-# from nltk import SnowballStemmer
-# from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-# from sklearn.multiclass import OneVsRestClassifier
-# from sklearn.linear_model import SGDClassifier
-# from sklearn import metrics
-# import numpy as np
-
-import warnings
-warnings.filterwarnings("ignore")
 import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
-import re, sys, os, json
-import datetime as dt
+import re, sys, json
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import SnowballStemmer
@@ -27,10 +9,13 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.linear_model import SGDClassifier
 from sklearn import metrics
-from sklearn.metrics import f1_score,precision_score,recall_score
-from sklearn import svm
-from sklearn.linear_model import LogisticRegression
-from datetime import datetime
+
+"""
+before running
+$ python
+>>> nltk.download(puntk)
+>>> nltk.download(stopwords)
+"""
 
 DATA_DIRECTORY = "../Results"
 RES_DIR = "../Results"
@@ -64,16 +49,12 @@ for id, post in data_arr.items():
 
 df = df[['title', 'tags']]
 df['title'] = df['title'].astype('str')
-print(df)
 
-y_vectorizer = CountVectorizer()
+y_vectorizer = CountVectorizer(tokenizer= lambda text : text.split(), binary=True)
+
 multilabel_output = y_vectorizer.fit_transform(df["tags"])
 
 def tags_to_choose(n):
-    """
-    Choose first n tags only.
-    """
-
     t = multilabel_output.sum(axis=0).tolist()[0]
     sorted_tags_i = sorted(range(len(t)), key=lambda i: t[i], reverse=True)
     multilabel_outputn=multilabel_output[:,sorted_tags_i[:n]]
@@ -93,11 +74,11 @@ for i in range(500, total_tags, 100):
     question_explained.append(np.round(((total_qs-questions_explained_fn(i))/total_qs)*100,3))
 
 multilabel_yx = tags_to_choose(5500)
-print("number of questions that are not covered :", questions_explained_fn(5500),"out of ", total_qs)
+# print("number of questions that are not covered :", questions_explained_fn(5500),"out of ", total_qs)
 
 multilabel_yx.get_shape()
 
-print("Number of tags in sample :", multilabel_output.shape[1])
+# print("Number of tags in sample :", multilabel_output.shape[1])
 
 total_size=df.shape[0]
 train_size=int(0.80*total_size)
@@ -108,27 +89,25 @@ x_test=df.tail(total_size - train_size)
 y_train = multilabel_yx[0:train_size,:]
 y_test = multilabel_yx[train_size:total_size,:]
 
-print("Number of data points in train data :", y_train.shape)
-print("Number of data points in test data :", y_test.shape)
+# print("Number of data points in train data :", y_train.shape)
+# print("Number of data points in test data :", y_test.shape)
 
 tfidf_vect = TfidfVectorizer(min_df=0.00009,max_features=200000,smooth_idf=True,norm='l2',\
                tokenizer=lambda x : x.split(),sublinear_tf=False, ngram_range=(1,3) )
 
-x_train_vectors = tfidf_vect.fit_transform(x_train['title'])
-x_test_vectors = tfidf_vect.transform(x_test['title'])
+x_train_vectors = tfidf_vect.fit_transform(x_train['title'].values)
+x_test_vectors = tfidf_vect.transform(x_test['title'].values)
 
-print("Dimensions of train data X:",x_train_vectors.shape, "Y :",y_train.shape)
-print("Dimensions of test data X:",x_test_vectors.shape,"Y:",y_test.shape)
+# print("Dimensions of train data X:",x_train_vectors.shape, "Y :",y_train.shape)
+# print("Dimensions of test data X:",x_test_vectors.shape,"Y:",y_test.shape)
 
 classifier = OneVsRestClassifier(SGDClassifier(loss='log', alpha=0.00001, penalty='l1'), n_jobs=-1)
-x_train_vectors = np.array(x_train_vectors)
-y_train = np.array(y_train)
-print(len(x_train_vectors))
-print(len(y_train))
+x_train_vectors = x_train_vectors.toarray()
+y_train = y_train.toarray()
+
 classifier.fit(x_train_vectors,y_train)
 
 predictions = classifier.predict(x_test_vectors)
-
 
 print("accuracy ", metrics.accuracy_score(y_test,predictions))
 print("macro f1 score ",metrics.f1_score(y_test,predictions, average='macro'))
