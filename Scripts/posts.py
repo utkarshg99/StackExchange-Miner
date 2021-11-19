@@ -134,3 +134,73 @@ def run_posts(stack_name, resdir):
         resultfile = resdir + "/orphan.answers.json"
         with open(resultfile, "w+") as f:
             json.dump(orphan_ans, f, indent="\t")
+    
+    posts_srt_ = dict(sorted(posts.items(), key=lambda item: item[1]["views"], reverse=True))
+    keys = list(posts_srt_.keys())[:10]
+    posts_srt = {str(key): posts[key]["views"] for key in keys}
+    plt.figure(figsize=(12,6))
+    plt.bar(posts_srt.keys(), posts_srt.values())
+    plt.title("Top 10 Most Viewed Posts")
+    plt.tight_layout(pad=0)
+    plt.savefig(f"{resdir}/MostViewed.10.png")
+    plt.clf()
+    
+    posts_srt_ = dict(sorted(posts.items(), key=lambda item: item[1]["num_ans"], reverse=True))
+    keys = list(posts_srt_.keys())[:10]
+    posts_srt = {str(key): posts[key]["num_ans"] for key in keys}
+    plt.figure(figsize=(12,6))
+    plt.bar(posts_srt.keys(), posts_srt.values())
+    plt.title("Top 10 Most Answered Posts")
+    plt.tight_layout(pad=0)
+    plt.savefig(f"{resdir}/MostAnswered.10.png")
+    plt.clf()
+    
+    posts_srt_ = dict(sorted(posts.items(), key=lambda item: item[1]["num_comm"], reverse=True))
+    keys = list(posts_srt_.keys())[:10]
+    posts_srt = {str(key): posts[key]["num_comm"] for key in keys}
+    plt.figure(figsize=(12,6))
+    plt.bar(posts_srt.keys(), posts_srt.values())
+    plt.title("Top 10 Most Commented Posts")
+    plt.tight_layout(pad=0)
+    plt.savefig(f"{resdir}/MostCommented.10.png")
+    plt.clf()
+    
+    posts_srt_ = dict(sorted(posts.items(), key=lambda item: item[1]["num_fav"], reverse=True))
+    keys = list(posts_srt_.keys())[:10]
+    posts_srt = {str(key): posts[key]["num_fav"] for key in keys}
+    plt.figure(figsize=(12,6))
+    plt.bar(posts_srt.keys(), posts_srt.values())
+    plt.title("Top 10 Most Favorited Posts")
+    plt.tight_layout(pad=0)
+    plt.savefig(f"{resdir}/MostFavorited.10.png")
+    plt.clf()
+    
+    posts_srt_ = dict(sorted(posts.items(), key=lambda item: item[1]["score"], reverse=True))
+    keys = list(posts_srt_.keys())[:10]
+    posts_srt = {str(key): posts[key]["score"] for key in keys}
+    plt.figure(figsize=(12,6))
+    plt.bar(posts_srt.keys(), posts_srt.values())
+    plt.title("Top 10 Most Scoring Posts")
+    plt.tight_layout(pad=0)
+    plt.savefig(f"{resdir}/MostScoring.10.png")
+    plt.clf()
+    
+    posts_srt_ = dict(sorted(user_posts.items(), key=lambda item: item[1]["num_posts"], reverse=True))
+    keys = list(posts_srt_.keys())[:10]
+    posts_srt = {str(key): user_posts[key]["num_posts"] for key in keys}
+    plt.figure(figsize=(12,6))
+    plt.bar(posts_srt.keys(), posts_srt.values())
+    plt.title("Top 10 Users with most Posts")
+    plt.tight_layout(pad=0)
+    plt.savefig(f"{resdir}/UsersPosts.10.png")
+    plt.clf()
+    
+    posts_srt_ = dict(sorted(user_posts.items(), key=lambda item: item[1]["num_ans"], reverse=True))
+    keys = list(posts_srt_.keys())[:10]
+    posts_srt = {str(key): user_posts[key]["num_ans"] for key in keys}
+    plt.figure(figsize=(12,6))
+    plt.bar(posts_srt.keys(), posts_srt.values())
+    plt.title("Top 10 Users with most Answers")
+    plt.tight_layout(pad=0)
+    plt.savefig(f"{resdir}/UsersAnswers.10.png")
+    plt.clf()
