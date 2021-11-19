@@ -11,6 +11,7 @@ RES_DIR = f"../Results/{sys.argv[1]}"
 WORDS = 100
 N_TOP = 10
 Path(RES_DIR).mkdir(parents=True, exist_ok=True)
+IGNORE_WORDS = ["doe"]
 
 def getTfIdfFreq(opfl, fld):
     fpath = f"{DATA_DIRECTORY}/{sys.argv[1]}/{opfl}.json"
@@ -23,7 +24,10 @@ def getTfIdfFreq(opfl, fld):
         tokens=[tok.lower() for tok in tokens if tok.isalpha()]
         lemms = []
         for item in tokens:
-            lemms.append(lemma.lemmatize(item))
+            item_ = lemma.lemmatize(item)
+            if item_ in IGNORE_WORDS:
+                continue
+            lemms.append(item_)
         return lemms
 
     tok_arr = []
