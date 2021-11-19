@@ -47,15 +47,3 @@ def make_wordcloud(freq_dict):
     plt.axis("off")
     plt.imshow(wc, interpolation="bilinear")
     return fig
-
-
-def vis_graph(adj):
-    G = nx.Graph()
-    for u in adj:
-        for v in adj[u]["related"]:
-            G.add_edge(u, v["id"], color="blue")
-        for v in adj[u]["duplicate"]:
-            G.add_edge(u, v["id"], color="red")
-    net = Network("2000px", "2000px")
-    net.from_nx(G)
-    net.save_graph("static_graph.html")

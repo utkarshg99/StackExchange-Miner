@@ -1,11 +1,5 @@
 from utils import *
 
-"""
-More results:
-Users with more number of badges
-Badge award chronology
-"""
-
 
 def run_badges(stack_name, resdir):
     print("Badge Data Analysis")
@@ -26,6 +20,8 @@ def run_badges(stack_name, resdir):
     user_badges = {}
 
     for entry in badges:
+        if entry["Name"] == entry["Name"].lower():
+            continue
         level = int(entry["Class"])
         if level == 1:
             if entry["Name"] not in gold_badges:
