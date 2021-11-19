@@ -1,8 +1,9 @@
-linkify-it-py
-pyvis
-networkx
-beautifulsoup4
-lxml
-wordcloud
-nltk
-sklearn
+linkify-it-py==1.0.1
+pyvis==3.10.0.2
+networkx==4.4.2
+wordcloud==1.8.1
+nltk==3.6.5
+sklearn==2.1.0
+pathlib==1.0.1
+beautifulsoup4==2.2.1
+lxml==4.6.2

@@ -90,7 +90,7 @@
      - Reputation
      - CreationDate
      - DisplayName
-     - EmailHash
+     - EmailHash (always blank)
      - LastAccessDate
      - WebsiteUrl
      - Location
