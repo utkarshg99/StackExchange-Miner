@@ -54,3 +54,5 @@ def run_tags(stack_name, resdir):
             f.write(",".join([str(k), str(v)]) + "\n")
 
     plot_bar_dict(dict(sort_count)).savefig(resdir + "/tags.10.png")
+
+    make_wordcloud(counts).savefig(resdir + "/tags.wc.png")

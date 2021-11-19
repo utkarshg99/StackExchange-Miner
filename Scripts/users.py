@@ -24,7 +24,6 @@ def run_users(stack_name, resdir):
             continue
         id = int(entry["AccountId"])
         reps = int(entry["Reputation"])
-        # print(id, entry)
         if id < 0:
             continue
         if id not in users:
