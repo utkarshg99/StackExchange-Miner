@@ -6,6 +6,9 @@ from shutil import rmtree, move, copyfile
 import matplotlib.pyplot as plt
 import re
 from linkify_it import LinkifyIt
+from wordcloud import WordCloud
+import networkx as nx
+from pyvis.network import Network
 
 DATA_DIR = "../Data/Extracted/"
 
@@ -36,3 +39,23 @@ def load_file(stack, filename):
             return dump["data"]
     else:
         return []
+
+
+def make_wordcloud(freq_dict):
+    wc = WordCloud(width=640, height=640, prefer_horizontal=1, max_words=100).generate_from_frequencies(freq_dict)
+    fig = plt.figure(frameon=False, figsize=(6.4, 6.4))
+    plt.axis("off")
+    plt.imshow(wc, interpolation="bilinear")
+    return fig
+
+
+def vis_graph(adj):
+    G = nx.Graph()
+    for u in adj:
+        for v in adj[u]["related"]:
+            G.add_edge(u, v["id"], color="blue")
+        for v in adj[u]["duplicate"]:
+            G.add_edge(u, v["id"], color="red")
+    net = Network("2000px", "2000px")
+    net.from_nx(G)
+    net.save_graph("static_graph.html")

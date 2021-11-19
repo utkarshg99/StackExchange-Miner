@@ -4,7 +4,6 @@ from utils import *
 More results:
 Users with more number of badges
 Badge award chronology
-Bubble visualization
 """
 
 
@@ -97,3 +96,7 @@ def run_badges(stack_name, resdir):
     plot_bar_dict(dict(list(sorted(bronze_badges.items(), key=lambda x: x[1], reverse=True))[:10])).savefig(
         resdir + "/bronze_stats.png"
     )
+
+    make_wordcloud(gold_badges).savefig(resdir + "/gold.badges.png")
+    make_wordcloud(silver_badges).savefig(resdir + "/silver.badges.png")
+    make_wordcloud(bronze_badges).savefig(resdir + "/bronze.badges.png")
