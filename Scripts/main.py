@@ -1,4 +1,5 @@
 from badges import run_badges
+from fastestgun import run_fastestgun
 from postlinks import run_postlinks
 from votes import run_votes
 from tags import run_tags
@@ -25,6 +26,7 @@ def run(stack_name):
     run_posts(stack_name, resultdir)
     run_users(stack_name, resultdir)
     run_posthist(stack_name, resultdir)
+    run_fastestgun(stack_name, resultdir)
 
 
 if __name__ == "__main__":
