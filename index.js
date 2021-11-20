@@ -15,6 +15,7 @@ const VERIFY_CSV = "xmls-v.csv";
 const SCRAPE_JSON = "xmls.json";
 const SCRAPE_TSV = "main.tsv";
 const FILES = ["Badges.xml", "Comments.xml", "PostHistory.xml", "PostLinks.xml", "Posts.xml", "Tags.xml", "Users.xml", "Votes.xml"];
+const CONFIG = JSON.parse(fs.readFileSync("config.json"));
 
 function processMain(){
     let raw_txt = String(fs.readFileSync(SCRAPE_OUTPUT_PATH + SCRAPE_TSV));
@@ -133,19 +134,7 @@ async function findData() {
 }
 
 async function getData() {
-    let urls = [
-        // "apple.stackexchange.com.7z",
-        // "android.stackexchange.com.7z"
-        // "chinese.stackexchange.com.7z", 
-        // "emacs.stackexchange.com.7z", 
-        // "history.stackexchange.com.7z",
-        "ethereum.stackexchange.com.7z", 
-        "datascience.stackexchange.com.7z",
-        "space.stackexchange.com.7z",
-        "crypto.stackexchange.com.7z",
-        "islam.stackexchange.com.7z",
-        "hinduism.stackexchange.com.7z"
-    ]; // The stackexchange sub-domains to download data from
+    let urls = CONFIG["urls"]; // The stackexchange sub-domains to download data from
     let fnames = await downloadFile(urls);
     await unzipFiles(fnames); // unzip the downloaded tars
     return urls;
@@ -169,7 +158,7 @@ async function convertJSON(dwd_dat){
 }
 
 async function main() {
-    // await findData();
+    // await findData(); // Run to generate site catalog.
     let dwd_dat = await getData();
     await convertJSON(dwd_dat);
 }

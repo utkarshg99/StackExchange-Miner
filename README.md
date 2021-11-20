@@ -1,24 +1,97 @@
 # StackExchange-Miner
 
-StackExchanges we plan to present results for: 
+# Requirements
 
-money.stackexchange.com (90.0M, 2.3M) [Badges, PostHistory, PostLinks, Posts, Tags]
+## Hardware:
 
-crypto.stackexchange.com (78.6M, 2.0M) [Badges, PostHistory, PostLinks, Users]
+* Atleast 8GB of RAM 
+* Internet Connectivity
 
-ux.stackexchange.com (98.8M, 2.6M) [Badges, PostHistory, PostLinks, Posts, Tags]
+## Software:
 
-android.stackexchange.com (106M, 2.9M) [Badges, PostHistory, PostLinks, Posts, Tags, Votes]
+* OS: Ubuntu
 
-hinduism.stackexchange.com (56.3M, 3.1M) [Badges, PostHistory, PostLinks]
+# Installation Instructions
 
-islam.stackexchange.com (42.1M, 3.5M) [Badges, PostHistory, PostLinks]
+## Following Frameworks are needed to run the project:
 
-christianity.stackexchange.com (90.4M, 6.6M) [Badges, PostHistory, PostLinks, Posts, Tags]
+* NodeJS
+* Python3
+* R
 
+Please follow the official instructions to install them properly. Make sure that the following commands get executed without any errors:
+```
+node --version
+npm --version
+python3 --version
+pip3 --version
+R --version
+```
+The minimum versions needed are:
 
-We note that the schema for all StackExchange data is the same, so the goal is to develop generalized analyses. 
+| Name    | Minimum Version |
+|---------|-----------------|
+| NodeJS  | 12.22.6         |
+| Python3 | 3.6.9           |
+| R       | 4.1.2           |
 
-Archive structure is mentioned in [schema.md](schema.md). Some StackExchange dumps have missing data.
+## Following Libraries are needed to be installed:
 
-[sites.xml](sites.xml) has the list of all sites for which data is available.
+### Node
+Details mentioned in `dependencies` field of [`package.json`](package.json). Run:
+```
+npm install package.json
+```
+
+### Python3 
+Libraries mentioned in [`requirements.txt`](requirements.txt). Run:
+```
+pip3 install -r requirements.txt
+```
+
+### R: 
+`arules` package needs to be installed. Run:
+```
+R
+```
+Once inside the the R shell execute:
+```
+install.packages("arules")
+```
+
+# Running Instructions
+
+### Once the required Frameworks are installed:
+
+## Run [`start.sh`](start.sh)
+
+```
+apt install jq
+./start.sh
+```
+
+## OR
+
+## Execute:
+
+### To download, extract and convert the datasets:
+
+Make edits to the list of stackexchanges mentioned in [`config.json`](config.json) and run:
+```
+node --max-old-used-space=12288 index.js
+```
+
+### Running the Analysis:
+
+Once the dowloading, extraction and convesion to json is complete, run:
+
+```
+cd Scripts
+python3 main_.py %%NAME_OF_STACKEXCHANGE_TO_RUN_ANALYSIS_ON%%
+```
+
+For example:
+```
+cd Scripts
+python3 main_.py crypto.stackexchange.com
+```
