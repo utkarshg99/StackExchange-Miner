@@ -134,15 +134,17 @@ async function findData() {
 
 async function getData() {
     let urls = [
-        // "ethereum.stackexchange.com.7z", 
+        // "apple.stackexchange.com.7z",
+        // "android.stackexchange.com.7z"
         // "chinese.stackexchange.com.7z", 
         // "emacs.stackexchange.com.7z", 
         // "history.stackexchange.com.7z",
-        // "datascience.stackexchange.com.7z",
-        // "space.stackexchange.com.7z",
-        // "crypto.stackexchange.com.7z",
+        "ethereum.stackexchange.com.7z", 
+        "datascience.stackexchange.com.7z",
+        "space.stackexchange.com.7z",
+        "crypto.stackexchange.com.7z",
         "islam.stackexchange.com.7z",
-        // "hinduism.stackexchange.com.7z"
+        "hinduism.stackexchange.com.7z"
     ]; // The stackexchange sub-domains to download data from
     let fnames = await downloadFile(urls);
     await unzipFiles(fnames); // unzip the downloaded tars

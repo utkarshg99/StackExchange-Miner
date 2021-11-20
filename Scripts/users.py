@@ -1,6 +1,7 @@
 from datetime import datetime
 from utils import *
 
+
 def run_users(stack_name, resdir):
     print("Users Data Analysis")
 
@@ -18,6 +19,7 @@ def run_users(stack_name, resdir):
     users = {}
     profiles = {}
     linkify = LinkifyIt()
+    rep_sum = 0
 
     for entry in user_data:
         if "AccountId" not in entry:
@@ -30,6 +32,7 @@ def run_users(stack_name, resdir):
             users[id] = {}
             profiles[id] = {}
         users[id]["rep"] = reps
+        rep_sum += reps
         users[id]["name"] = entry["DisplayName"]
         users[id]["up"] = int(entry["UpVotes"])
         users[id]["down"] = int(entry["DownVotes"])
@@ -53,19 +56,24 @@ def run_users(stack_name, resdir):
         profiles[id]["photo"] = entry.get("ProfileImageUrl", "")
 
     results = {}
+    results["Number of Users"] = len(users)
+    results["Total Reputation Points"] = rep_sum
+    results["Average User Reputation"] = round(rep_sum / len(users), 2)
+    results["Users"] = users
+
     print("Writing Results...")
     resultfile = resdir + "/users.results.json"
     with open(resultfile, "w+") as f:
-        json.dump(users, f, indent="\t")
+        json.dump(results, f, indent="\t")
 
     resultfile = resdir + "/profiles.results.json"
     with open(resultfile, "w+") as f:
         json.dump(profiles, f, indent="\t")
-    
+
     users_srt_rep = dict(sorted(users.items(), key=lambda item: item[1]["rep"], reverse=True))
     keys = list(users_srt_rep.keys())[:10]
     users_srt = {users[key]["name"]: users[key]["rep"] for key in keys}
-    plt.figure(figsize=(12,6))
+    plt.figure(figsize=(12, 6))
     plt.bar(users_srt.keys(), users_srt.values())
     plt.title("Top 10 Most Reputed Users")
     plt.tight_layout(pad=0)

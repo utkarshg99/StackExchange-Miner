@@ -198,3 +198,7 @@ def run_votes(stack_name, resdir):
     totals.pop("Total")
     plot_bar_dict(totals).savefig(resdir + "/votes.png")
     plot_bar_dict(special_totals).savefig(resdir + "/posts.special.png")
+    plot_bar_dict({str(k[0]): sum(k[1].values()) for k in voted_sort}).savefig(resdir + "/voted.10.png")
+    plot_bar_dict({str(k[0]): k[1].get("Upvote", 0) for k in uv_sort}).savefig(resdir + "/uv.10.png")
+    plot_bar_dict({str(k[0]): k[1].get("Downvote", 0) for k in dv_sort}).savefig(resdir + "/dv.10.png")
+    plot_bar_dict({str(k[0]): k[1] for k in fav_sort}).savefig(resdir + "/fav.10.png")
