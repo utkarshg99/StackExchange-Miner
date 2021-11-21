@@ -544,7 +544,7 @@ The first answers are almost always accepted.
 
 ### Tags
 
-Shows last 10 itemsets. Entire list can be found at [ARM_badges_fits.csv](islam.stackexchange.com/ARM_tags_fits.csv)
+Shows last 10 itemsets. Entire list can be found at [ARM_tags_fits.csv](islam.stackexchange.com/ARM_tags_fits.csv)
 
 <div align="center">
 
@@ -568,7 +568,7 @@ Shows last 10 itemsets. Entire list can be found at [ARM_badges_fits.csv](islam.
 
 <div align="center">
 
-Shows last 10 itemsets. Entire list can be found at [ARM_badges_fits.csv](islam.stackexchange.com/ARM_tags_fits.csv)
+Shows last 10 itemsets. Entire list can be found at [ARM_badges_fits.csv](islam.stackexchange.com/ARM_badges_fits.csv)
 
 |id|items|support|count|
 |---|-------|---------|-------:|

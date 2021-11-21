@@ -513,7 +513,7 @@ Bar Graph of UpVote Rate vs Buckets of Reputation
 
 ### Frequent Itemsets
 
-Shows last 10 itemsets. Entire list can be found at [ARM_badges_fits.csv](crypto.stackexchange.com/ARM_tags_fits.csv)
+Shows last 10 itemsets. Entire list can be found at [ARM_tags_fits.csv](crypto.stackexchange.com/ARM_tags_fits.csv)
 
 <div align="center">
 
@@ -557,7 +557,7 @@ Shows last 10 rules. Entire list can be found at [ARM_tags_mined.csv](crypto.sta
 
 <div align="center">
 
-Shows last 10 itemsets. Entire list can be found at [ARM_badges_fits.csv](crypto.stackexchange.com/ARM_tags_fits.csv)
+Shows last 10 itemsets. Entire list can be found at [ARM_badges_fits.csv](crypto.stackexchange.com/ARM_badges_fits.csv)
 
 |id|items|support|count|
 |---|-------|---------|-------:|
