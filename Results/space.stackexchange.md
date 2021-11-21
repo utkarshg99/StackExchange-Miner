@@ -13,7 +13,7 @@
 | Number of Votes                    | 370160|
 | Number of Badges Awarded           | 74047|
 | Number of Tags                     | 6837   |
-| <hr/>                              | <3402 |
+| <hr/>                              | <hr/> |
 | Total Reputation Points            |4596658|
 | Average Reputation per User        | 146.58 |
 | <hr/>                              | <hr/> |
