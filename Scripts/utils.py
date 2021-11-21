@@ -21,7 +21,13 @@ def plot_bar_dict(d, angle=20):
 
 
 def plot_sparse(d, angle):
-    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10, 10), dpi=300)
+    fig, ax = plt.subplots(
+        nrows=1,
+        ncols=1,
+        figsize=(10, 10),
+        dpi=300,
+    )
+    fig.tight_layout()
     ax.plot(list([v.replace(" ", "\n") for v in d.keys()]), list(d.values()))
     ax.set_xticks(ax.get_xticks()[::4])
     ax.tick_params(axis="x", labelrotation=angle, labelsize=6)
@@ -45,6 +51,6 @@ def make_wordcloud(freq_dict):
     wc = WordCloud(width=640, height=640, prefer_horizontal=1, max_words=100).generate_from_frequencies(freq_dict)
     fig = plt.figure(frameon=False, figsize=(6.4, 6.4))
     plt.axis("off")
-    plt.tight_layout(pad=0)
+    fig.tight_layout()
     plt.imshow(wc, interpolation="bilinear")
     return fig
