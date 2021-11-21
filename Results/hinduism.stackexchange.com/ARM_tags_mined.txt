@@ -1,0 +1,12 @@
+|id|LHS|RHS|support|confidence|coverage|lift|count|
+|--|---|---|-------|----------|--------|----|----:|
+|360|{title,exaltation}|{non-attachment}|0.0012|0.3393|0.0035|33.4963|38|
+|361|{teaching,prisoners}|{nimbarkacharya}|0.001|0.2667|0.0038|16.0056|32|
+|362|{teaching,nimbarkacharya}|{prisoners}|0.001|0.4571|0.0022|32.7027|32|
+|363|{nimbarkacharya,prisoners}|{teaching}|0.001|0.25|0.004|20.4722|32|
+|364|{appayya-dikshitar,devtas}|{kumarila-bhatta}|0.0013|0.2642|0.005|5.0581|42|
+|365|{appayya-dikshitar,kumarila-bhatta}|{devtas}|0.0013|0.25|0.0053|5.6031|42|
+|366|{kumarila-bhatta,devtas}|{appayya-dikshitar}|0.0013|0.1826|0.0073|6.163|42|
+|367|{lalita-sahasranama,devtas}|{kumarila-bhatta}|0.001|0.3626|0.0029|6.944|33|
+|368|{kumarila-bhatta,lalita-sahasranama}|{devtas}|0.001|0.2171|0.0048|4.8658|33|
+|369|{kumarila-bhatta,devtas}|{lalita-sahasranama}|0.001|0.1435|0.0073|3.9573|33|

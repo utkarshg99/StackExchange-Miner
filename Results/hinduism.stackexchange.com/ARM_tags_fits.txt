@@ -1,0 +1,12 @@
+|id|items|support|count|
+|---|-------|---------|-------:|
+|379|{priests,devtas}|0.0018|56|
+|380|{priests,kumarila-bhatta}|0.0025|78|
+|381|{kumarila-bhatta,devtas}|0.0073|230|
+|382|{evil,yoga-vashishtha,priests}|0.0015|46|
+|383|{yama,nimbarkacharya,prisoners}|0.001|33|
+|384|{samskara,lalita-sahasranama,exaltation}|0.0016|50|
+|385|{non-attachment,title,exaltation}|0.0012|38|
+|386|{teaching,nimbarkacharya,prisoners}|0.001|32|
+|387|{appayya-dikshitar,kumarila-bhatta,devtas}|0.0013|42|
+|388|{kumarila-bhatta,lalita-sahasranama,devtas}|0.001|33|

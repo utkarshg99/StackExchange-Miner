@@ -1,0 +1,12 @@
+|id|LHS|RHS|support|confidence|coverage|lift|count|
+|--|---|---|-------|----------|--------|----|----:|
+|257|{encryption}|{number-field-sieve}|0.0016|0.0403|0.0389|0.9905|91|
+|258|{number-field-sieve}|{terminology}|0.0069|0.1691|0.0407|2.4348|399|
+|259|{terminology}|{number-field-sieve}|0.0069|0.099|0.0695|2.4348|399|
+|260|{encryption}|{terminology}|0.0092|0.2367|0.0389|3.4078|535|
+|261|{terminology}|{encryption}|0.0092|0.1327|0.0695|3.4078|535|
+|262|{timestamping}|{terminology}|0.0043|0.0988|0.0438|1.422|251|
+|263|{terminology}|{timestamping}|0.0043|0.0623|0.0695|1.422|251|
+|264|{visual-cryptography,number-field-sieve}|{terminology}|0.0026|0.277|0.0093|3.9868|149|
+|265|{terminology,visual-cryptography}|{number-field-sieve}|0.0026|0.3204|0.008|7.8821|149|
+|266|{terminology,number-field-sieve}|{visual-cryptography}|0.0026|0.3734|0.0069|11.3811|149|

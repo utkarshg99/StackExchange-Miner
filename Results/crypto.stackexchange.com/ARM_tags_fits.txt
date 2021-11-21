@@ -1,0 +1,12 @@
+|id|items|support|count|
+|---|-------|---------|-------:|
+|289|{twofish,number-field-sieve}|0.0015|88|
+|290|{twofish,terminology}|0.0018|104|
+|291|{visual-cryptography,number-field-sieve}|0.0093|538|
+|292|{timestamping,visual-cryptography}|0.0012|70|
+|293|{terminology,visual-cryptography}|0.008|465|
+|294|{encryption,number-field-sieve}|0.0016|91|
+|295|{terminology,number-field-sieve}|0.0069|399|
+|296|{encryption,terminology}|0.0092|535|
+|297|{terminology,timestamping}|0.0043|251|
+|298|{terminology,visual-cryptography,number-field-sieve}|0.0026|149|
