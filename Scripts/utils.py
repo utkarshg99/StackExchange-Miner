@@ -45,5 +45,6 @@ def make_wordcloud(freq_dict):
     wc = WordCloud(width=640, height=640, prefer_horizontal=1, max_words=100).generate_from_frequencies(freq_dict)
     fig = plt.figure(frameon=False, figsize=(6.4, 6.4))
     plt.axis("off")
+    plt.tight_layout(pad=0)
     plt.imshow(wc, interpolation="bilinear")
     return fig
